@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Stretcher App</string>
     <string name="stretcher_app">Stretcher App</string>
+    <string name="no__registrado">No estás Registrado?</string>
+    <string name="olvido_pass">Olvidé mi Contraseña</string>
+    <string name="password_text">Password</string>
+    <string name="username_txt">Username</string>
+    <string name="pie">view</string>
 </resources>
