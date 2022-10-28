@@ -6,4 +6,5 @@
     <string name="password_text">Password</string>
     <string name="username_txt">Username</string>
     <string name="pie">view</string>
+    <string name="ingresar">Ingresar</string>
 </resources>

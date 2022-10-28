@@ -55,6 +55,8 @@
         android:hint="@string/username_txt"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
         android:textColorHint="#455A64"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -72,6 +74,8 @@
         android:hint="@string/password_text"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
         android:textColorHint="#455A64"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -109,7 +113,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.966" />
 
-
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/botones"
+        android:text="@string/ingresar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
