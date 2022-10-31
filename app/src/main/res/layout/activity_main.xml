@@ -45,26 +45,28 @@
         tools:ignore="ImageContrastCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:autofillHints=""
         android:background="@drawable/txt_username"
         android:ems="10"
-        android:hint="@string/username_txt"
-        android:inputType="textPersonName"
+        android:hint="@string/email"
+        android:inputType="text|textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="20dp"
         android:paddingEnd="0dp"
+        android:textColor="#3A3A3A"
         android:textColorHint="#455A64"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="DuplicateClickableBoundsCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -80,10 +82,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/registrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no__registrado"
@@ -99,7 +101,7 @@
         app:layout_constraintVertical_bias="0.957" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/recordar"
         android:layout_width="158dp"
         android:layout_height="27dp"
         android:text="@string/olvido_pass"
@@ -114,16 +116,16 @@
         app:layout_constraintVertical_bias="0.966" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/ingresar"
+        android:layout_width="112dp"
+        android:layout_height="53dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="@color/botones"
         android:text="@string/ingresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,14 @@
     <string name="username_txt">Username</string>
     <string name="pie">view</string>
     <string name="ingresar">Ingresar</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="direccion">Dirección</string>
+    <string name="telefono">Teléfono</string>
+    <string name="email">Email</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombre">Nombre</string>
+    <string name="recupera_pass">Recuperación de Contraseña</string>
+    <string name="recuperar">Recuperar</string>
+    <string name="nueva_contrasena">Nueva Contraseña</string>
+    <string name="repita_contrasena">Repita Contraseña</string>
 </resources>

@@ -3,7 +3,7 @@ package com.example.prueba1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import java.util.logging.Handler
+import com.example.prueba1.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
     companion object {
@@ -13,10 +13,13 @@ class SplashActivity : AppCompatActivity() {
         // to show the full animation.
         const val ANIMATION_TIME: Long = 5000 //Change time according to your animation.
     }
-
+    private lateinit var binding:ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+       // setContentView(R.layout.activity_splash)
+
 
         android.os.Handler(this.mainLooper).postDelayed({
 
@@ -29,6 +32,7 @@ class SplashActivity : AppCompatActivity() {
             finish()
 
         }, ANIMATION_TIME)
+
 
     }
 }
