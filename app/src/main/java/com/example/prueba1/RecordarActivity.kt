@@ -35,9 +35,12 @@ class RecordarActivity : Activity() {
             binding.telefono2.setHint("Ingrese su telefono!!!")
         }else if(correo==email_db){
             if(telefono==telefono_db){
-                Toast.makeText(this,"Bienvenido nuevamente!!!", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this,"Bienvenido nuevamente!!!", Toast.LENGTH_LONG).show()
+                val intent1 = Intent(this,NauevaPassActivity::class.java)
+                intent1.putExtra("correo",correo)
+                intent1.putExtra("correo",correo)
+                startActivity(intent1)
 
-                startActivity(Intent(this,NauevaPassActivity::class.java))
             }else{
                 Toast.makeText(this,"Telefono incorrecta", Toast.LENGTH_LONG).show()
 

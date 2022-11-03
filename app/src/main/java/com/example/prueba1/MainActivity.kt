@@ -69,8 +69,7 @@ class MainActivity : AppCompatActivity() {
             //binding.password.setBackgroundColor(Color.RED)
         } else if (password.isEmpty()) {
             //binding.email.setTextColor(0x00F8EE7B)
-            binding.password.background =
-                ResourcesCompat.getDrawable(resources, R.drawable.txt_danger, null)
+            binding.password.background =ResourcesCompat.getDrawable(resources, R.drawable.txt_danger, null)
             binding.password.setHint("Ingrese su password!!!")
             //binding.password.setBackgroundColor(Color.RED)
         }else if(correo==email_db){
