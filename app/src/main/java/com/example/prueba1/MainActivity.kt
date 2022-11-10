@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         var pref=getSharedPreferences(correo,Context.MODE_PRIVATE)
         var email_db=pref.getString("correo","")
         var pass_db=pref.getString("password","")
+        var rol_db=pref.getString("rol","")
         if (correo.isEmpty()){
             //binding.email.setTextColor(0x00F8EE7B)
             binding.email.background=ResourcesCompat.getDrawable(resources,R.drawable.txt_danger,null)
@@ -75,7 +76,25 @@ class MainActivity : AppCompatActivity() {
         }else if(correo==email_db){
             if(password==pass_db){
                 Toast.makeText(this,"Bienvenido nuevamente!!!",Toast.LENGTH_LONG).show()
-                startActivity(Intent(this,CamilleroActivity::class.java))
+                binding.email.setText("")
+                binding.password.setText("")
+                when(rol_db){
+                    "camillero"->{
+                        startActivity(Intent(this,CamilleroActivity::class.java))
+                    }
+                    "jefe"->{
+                        startActivity(Intent(this,JefeActivity::class.java))
+                    }
+                    "administrador"->{
+
+                    }
+                    else->{
+                        startActivity(Intent(this,JefeActivity::class.java))
+                    }
+                }
+
+
+
             }else{
                 Toast.makeText(this,"Contraseña incorrecta",Toast.LENGTH_LONG).show()
             }

@@ -38,7 +38,6 @@ class RecordarActivity : Activity() {
                 //Toast.makeText(this,"Bienvenido nuevamente!!!", Toast.LENGTH_LONG).show()
                 val intent1 = Intent(this,NauevaPassActivity::class.java)
                 intent1.putExtra("correo",correo)
-                intent1.putExtra("correo",correo)
                 startActivity(intent1)
 
             }else{

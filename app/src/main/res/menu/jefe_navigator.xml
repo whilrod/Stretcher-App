@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/servicios"
+        android:icon="@drawable/ic_baseline_airline_seat_flat_24"
+        android:title="@string/servicios" />
+
+    <item
+        android:id="@+id/camilleros"
+        android:icon="@drawable/ic_baseline_baby_changing_station_24"
+        android:title="@string/camilleros" />
+    <item
+        android:id="@+id/historico"
+        android:icon="@drawable/ic_baseline_history_24"
+        android:title="@string/historico" />
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/perfil" />
+</menu>

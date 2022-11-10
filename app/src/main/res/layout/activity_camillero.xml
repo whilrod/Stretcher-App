@@ -48,20 +48,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view5"
         app:layout_constraintVertical_bias="0.461"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:name="com.example.prueba1.CamilleroHomeFragment"
+        tools:layout="@layout/fragment_camillero_home" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="361dp"
-        android:layout_height="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
         android:background="@color/azulpurpura"
         app:itemIconSize="32dp"
         app:itemIconTint="@color/azul2"
         app:itemTextColor="@color/azul2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/botton_navigator" />
+        app:menu="@menu/botton_navigator" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
