@@ -35,7 +35,7 @@ class RegistroActivity : Activity() {
         editar.putString("telefono",telefono)
         editar.putString("direccion",direccion)
         editar.putString("password",password)
-        editar.putString("rol","camillero")
+        editar.putString("rol","jefe")
         editar.commit()
 
         Toast.makeText(this,"Usuario registrado exitosamente!!!", Toast.LENGTH_LONG).show()

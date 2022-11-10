@@ -20,8 +20,8 @@ class CreaServicio1 : AppCompatActivity() {
         binding = ActivityCreaServicio1Binding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnGuardar.setOnClickListener { guardar() }
-        //binding.btnCamara.setOnClickListener { tomaFoto() }
-        abrirCamara.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+        binding.btnCamara.setOnClickListener { tomaFoto() }
+
     }
     private val abrirCamara=
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -33,6 +33,9 @@ class CreaServicio1 : AppCompatActivity() {
             }
     }
 
+    fun tomaFoto(){
+        abrirCamara.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+    }
 
     private fun guardar(){
        /* val documento :String = binding.servDocumento.text.toString()
