@@ -35,6 +35,8 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         fab=binding.agregar
         fab!!.setOnClickListener({
             startActivity(Intent(context,CreaServicio1::class.java))

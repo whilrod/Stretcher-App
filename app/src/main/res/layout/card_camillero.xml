@@ -21,7 +21,9 @@
             android:maxWidth="24dp"
             android:maxHeight="24dp"
             android:paddingLeft="10dp"
-            app:srcCompat="@drawable/ic_fotouser_foreground" />
+            android:scaleX="1"
+            android:scaleY="1"
+            app:srcCompat="@mipmap/ic_fotouser_foreground_foreground" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -13,7 +13,7 @@ import com.example.prueba1.databinding.ActivityRecordarBinding
 
 class NauevaPassActivity : Activity() {
     lateinit var binding: ActivityNauevaPassBinding
-    public var dato:String=""
+    var dato:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNauevaPassBinding.inflate(layoutInflater)

@@ -78,6 +78,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:ignore="TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck" />
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/regresa"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/serv_retorna"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serv_origin" />
+
     <EditText
         android:id="@+id/serv_origin"
         android:layout_width="153dp"
@@ -102,32 +113,6 @@
         app:layout_constraintTop_toBottomOf="@+id/serv_nombres"
         tools:ignore="TextContrastCheck" />
 
-    <EditText
-        android:id="@+id/nombres3"
-        android:layout_width="202dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:autofillHints=""
-        android:background="@drawable/txt_username"
-        android:drawableStart="@drawable/ic_baseline_settings_backup_restore_24"
-        android:drawablePadding="10dp"
-        android:editable="false"
-        android:ems="10"
-        android:hint="@string/regresa"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:paddingStart="5dp"
-        android:paddingEnd="0dp"
-        android:textColorHint="#455A64"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serv_origin"
-        tools:ignore="Deprecated,TextContrastCheck,TextContrastCheck" />
-
-
-
-
 
     <EditText
         android:id="@+id/serv_recomendacion"
@@ -136,15 +121,15 @@
         android:layout_marginTop="12dp"
         android:autofillHints=""
         android:background="@drawable/txt_username"
-        android:drawableStart="@drawable/ic_baseline_assignment_late_24"
 
+        android:drawableStart="@drawable/ic_baseline_assignment_late_24"
         android:drawablePadding="10dp"
         android:ems="10"
         android:gravity="top|left"
         android:hint="@string/recomendaciones"
         android:inputType="textMultiLine"
-        android:lines="6"
 
+        android:lines="6"
         android:minHeight="48dp"
         android:overScrollMode="always"
         android:paddingStart="5dp"
@@ -156,7 +141,7 @@
         android:textColorHint="#455A64"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombres3"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     <EditText
@@ -184,12 +169,10 @@
         android:id="@+id/serv_retorna"
         android:layout_width="105dp"
         android:layout_height="50dp"
-        android:layout_marginStart="3dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="4dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nombres3"
         app:layout_constraintTop_toBottomOf="@+id/serv_destino">
 
         <RadioButton
@@ -235,7 +218,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/solicitud_de_servicio"
-        android:textSize="24sp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"

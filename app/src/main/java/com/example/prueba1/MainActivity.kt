@@ -75,21 +75,32 @@ class MainActivity : AppCompatActivity() {
             //binding.password.setBackgroundColor(Color.RED)
         }else if(correo==email_db){
             if(password==pass_db){
-                Toast.makeText(this,"Bienvenido nuevamente!!!",Toast.LENGTH_LONG).show()
+                //Toast.makeText(this,"Bienvenido nuevamente!!!",Toast.LENGTH_LONG).show()
                 binding.email.setText("")
                 binding.password.setText("")
                 when(rol_db){
                     "camillero"->{
-                        startActivity(Intent(this,CamilleroActivity::class.java))
+                        val intent1 = Intent(this,CamilleroActivity::class.java)
+                        intent1.putExtra("correo",correo)
+                        startActivity(intent1)
+                       // startActivity(Intent(this,CamilleroActivity::class.java))
                     }
                     "jefe"->{
-                        startActivity(Intent(this,JefeActivity::class.java))
+                        val intent1 = Intent(this,JefeActivity::class.java)
+                        intent1.putExtra("correo",correo)
+                        startActivity(intent1)
+                        //startActivity(Intent(this,JefeActivity::class.java))
                     }
                     "administrador"->{
-
+                        val intent1 = Intent(this,JefeActivity::class.java)
+                        intent1.putExtra("correo",correo)
+                        startActivity(intent1)
                     }
                     else->{
-                        startActivity(Intent(this,JefeActivity::class.java))
+                        val intent1 = Intent(this,CamilleroActivity::class.java)
+                        intent1.putExtra("correo",correo)
+                        startActivity(intent1)
+                        //startActivity(Intent(this,JefeActivity::class.java))
                     }
                 }
 

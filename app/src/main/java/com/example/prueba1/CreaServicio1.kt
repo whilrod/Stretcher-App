@@ -3,13 +3,17 @@ package com.example.prueba1
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 
 
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import com.example.prueba1.databinding.ActivityCreaServicio1Binding
+import java.io.File
 
 
 class CreaServicio1 : AppCompatActivity() {
@@ -23,18 +27,32 @@ class CreaServicio1 : AppCompatActivity() {
         binding.btnCamara.setOnClickListener { tomaFoto() }
 
     }
+    private lateinit var file: File
+
+    private fun crearArchivo(){
+        val dir= getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        file=File.createTempFile("org-${System.currentTimeMillis()}-","jpg",dir)
+    }
     private val abrirCamara=
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result->
             if(result.resultCode== RESULT_OK){
                 val data=result.data!!
-                val bitmap=data.extras?.get("data") as Bitmap
+               // val bitmap=data.extras?.get("data") as Bitmap
+                val bitmap = BitmapFactory.decodeFile(file.toString())
                 binding.servFoto.setImageBitmap(bitmap)
             }
     }
 
     fun tomaFoto(){
-        abrirCamara.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+        //abrirCamara.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+
+        val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+            crearArchivo()
+            val fotoUri=FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID+".fileprovider",file)
+            it.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri)
+        }
+        abrirCamara.launch(intent)
     }
 
     private fun guardar(){
