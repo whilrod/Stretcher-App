@@ -11,4 +11,5 @@ package com.example.prueba1
 * val fotoOrdenServicio: String,
 * */
 class Servicios (val documento:String,val historiaClinica:String, val nombrePaciente:String) {
+
 }
