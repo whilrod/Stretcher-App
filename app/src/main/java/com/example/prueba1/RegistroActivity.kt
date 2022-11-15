@@ -17,11 +17,12 @@ class RegistroActivity : Activity() {
         setContentView(binding.root)
         binding.btnRegistrarse.setOnClickListener { guardarUsuario() }
        // binding.ingresar.setOnClickListener { validar() }
+        //finish()
     }
 
     fun guardarUsuario(){
         val nombres :String = binding.nombres.text.toString()
-        val apellidos : String = binding.nombres.text.toString()
+        val apellidos : String = binding.apellidos.text.toString()
         val correo : String = binding.txtEmail.text.toString()
         val telefono : String= binding.telefono.text.toString()
         val direccion : String=binding.direccion.text.toString()

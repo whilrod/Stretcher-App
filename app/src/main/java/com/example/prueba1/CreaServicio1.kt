@@ -1,6 +1,7 @@
 package com.example.prueba1
 
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.Toast
 
 
 import androidx.activity.result.contract.ActivityResultContracts
@@ -27,7 +29,8 @@ class CreaServicio1 : AppCompatActivity() {
         binding.btnCamara.setOnClickListener { tomaFoto() }
 
     }
-    private lateinit var file: File
+    lateinit var file: File
+    var dir= ""
 
     private fun crearArchivo(){
         val dir= getExternalFilesDir(Environment.DIRECTORY_PICTURES)
@@ -43,29 +46,31 @@ class CreaServicio1 : AppCompatActivity() {
                 binding.servFoto.setImageBitmap(bitmap)
             }
     }
-
+    var fotoUri=""
     fun tomaFoto(){
         //abrirCamara.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
 
         val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
             crearArchivo()
-            val fotoUri=FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID+".fileprovider",file)
+            fotoUri=
+                FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID+".fileprovider",file).toString()
             it.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri)
         }
         abrirCamara.launch(intent)
     }
 
     private fun guardar(){
-       /* val documento :String = binding.servDocumento.text.toString()
+        val documento :String = binding.servDocumento.text.toString()
         val hClinica :String = binding.servHclinica.text.toString()
         val nombres :String = binding.servNombres.text.toString()
         val origen :String = binding.servOrigin.text.toString()
         val destino :String = binding.servDestino.text.toString()
         val retorna:Int = binding.servRetorna.id
         val recomendaciones :String = binding.servRecomendacion.text.toString()
+        val fotoRuta:String=dir+"/"+file
         //val foto :String = binding.servFoto.text.toString()
 
-        var pref=getSharedPreferences(documento,Context.MODE_PRIVATE)
+        var pref=getSharedPreferences(documento, Context.MODE_PRIVATE)
         var editar = pref.edit()
         editar.putString("documento",documento)
         editar.putString("hClinica",hClinica)
@@ -75,13 +80,20 @@ class CreaServicio1 : AppCompatActivity() {
         editar.putString("recomendaciones",recomendaciones)
         editar.putString("status","creado")
         if(retorna==0){
-            editar.putString("genero","SI")
+            editar.putString("regresa","SI")
         }else{
-            editar.putString("genero","NO")
+            editar.putString("regresa","NO")
         }
+        editar.putString("fotoRuta", fotoRuta)
+
+        val bundle=Bundle()
+        bundle.putString("documento",documento)
+        ServiciosFragment().arguments=bundle
+
 
         editar.commit()
         Toast.makeText(this,"Servicio Creado correctamente!",Toast.LENGTH_LONG).show()
-*/
+        startActivity(Intent(this,JefeActivity::class.java))
+
     }
 }
