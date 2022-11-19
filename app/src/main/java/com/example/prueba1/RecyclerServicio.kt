@@ -3,6 +3,7 @@ package com.example.prueba1
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,18 +14,19 @@ class RecyclerServicio(val listaServicios: MutableList<Servicios>):RecyclerView.
         lateinit var nombres:TextView
         lateinit var origen:TextView
         lateinit var destino:TextView
-        lateinit var recomendaciones:TextView
+        //lateinit var recomendaciones:TextView
         //lateinit var status:TextView
-       // lateinit var fotoServicio: TextView
+        lateinit var imagenOrden: ImageView
         init {
-            documento=itemview.findViewById(R.id.serv_documento)
-            hClinica=itemview.findViewById(R.id.serv_hclinica)
-            nombres=itemview.findViewById(R.id.serv_nombres)
-            origen=itemview.findViewById(R.id.serv_origin)
-            destino=itemview.findViewById(R.id.serv_destino)
-            recomendaciones=itemview.findViewById(R.id.serv_recomendacion)
+            // toma los id de la card
+            documento=itemview.findViewById(R.id.numero_servicio)
+            hClinica=itemview.findViewById(R.id.historia_clinica)
+            nombres=itemview.findViewById(R.id.nombre_paciente)
+            origen=itemview.findViewById(R.id.fecha_servicio)
+            destino=itemview.findViewById(R.id.hora_servicio)
+            //recomendaciones=itemview.findViewById(R.id.serv_recomendacion)
             //status=itemview.findViewById(R.id.ser)
-           // fotoServicio=itemview.findViewById(R.id.serv_foto)
+            imagenOrden=itemview.findViewById(R.id.imagenOrden)
         }
 
     }
@@ -42,7 +44,9 @@ class RecyclerServicio(val listaServicios: MutableList<Servicios>):RecyclerView.
         holder.nombres.text=servicios.nombrePaciente
         holder.origen.text=servicios.origenPaciente
         holder.destino.text=servicios.destinoPaciente
-        holder.recomendaciones.text=servicios.recomendacines
+        holder.imagenOrden.setImageResource(servicios.imagenOrden.toInt())
+
+        //holder.recomendaciones.text=servicios.recomendacines
        // holder.status.text=servicios.documento
       //  holder.fotoServicio.text=servicios.fotoOrdenServicio
     }

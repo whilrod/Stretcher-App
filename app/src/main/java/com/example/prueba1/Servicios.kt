@@ -10,6 +10,6 @@ package com.example.prueba1
 * val recomendacines: String,
 * val fotoOrdenServicio: String,
 * */
-class Servicios (val documento:String,val historiaClinica:String, val nombrePaciente:String) {
+class Servicios (val documento:String,val historiaClinica:String, val nombrePaciente:String,val origenPaciente:String, val destinoPaciente:String, val imagenOrden:String) {
 
 }

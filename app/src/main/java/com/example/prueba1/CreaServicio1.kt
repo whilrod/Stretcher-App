@@ -20,43 +20,46 @@ import java.io.File
 
 class CreaServicio1 : AppCompatActivity() {
     lateinit var binding: ActivityCreaServicio1Binding
-
+    var ruta =""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreaServicio1Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnGuardar.setOnClickListener { guardar() }
+        //binding.btnGuardar.setOnClickListener { guardar() }
         binding.btnCamara.setOnClickListener { tomaFoto() }
 
     }
     lateinit var file: File
-    var dir= ""
+    //var dir= ""
 
     private fun crearArchivo(){
         val dir= getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        file=File.createTempFile("org-${System.currentTimeMillis()}-","jpg",dir)
+        ruta=dir.toString()
+        file=File.createTempFile("org-${System.currentTimeMillis()}-",".jpg",dir)
     }
-    private val abrirCamara=
+    val abrirCamara=
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result->
             if(result.resultCode== RESULT_OK){
                 val data=result.data!!
-               // val bitmap=data.extras?.get("data") as Bitmap
-                val bitmap = BitmapFactory.decodeFile(file.toString())
-                binding.servFoto.setImageBitmap(bitmap)
+                val bitmap=data.extras?.get("data") as Bitmap
+                //val bitmap = BitmapFactory.decodeFile(file.toString())
+                binding.ordenImagen.setImageBitmap(bitmap)
             }
     }
+
+
     var fotoUri=""
     fun tomaFoto(){
-        //abrirCamara.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+        abrirCamara.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
 
-        val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+        /*val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
             crearArchivo()
             fotoUri=
                 FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID+".fileprovider",file).toString()
             it.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri)
-        }
-        abrirCamara.launch(intent)
+        }*/
+        //abrirCamara.launch(intent)
     }
 
     private fun guardar(){
@@ -67,7 +70,7 @@ class CreaServicio1 : AppCompatActivity() {
         val destino :String = binding.servDestino.text.toString()
         val retorna:Int = binding.servRetorna.id
         val recomendaciones :String = binding.servRecomendacion.text.toString()
-        val fotoRuta:String=dir+"/"+file
+        val fotoRuta:String=ruta + "/" +file
         //val foto :String = binding.servFoto.text.toString()
 
         var pref=getSharedPreferences(documento, Context.MODE_PRIVATE)

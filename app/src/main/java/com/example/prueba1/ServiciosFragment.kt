@@ -43,23 +43,20 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lista.add(Servicios("1020346783", "HC-023","Jose Mendez", "Hab. 201","TAC 2","Si","No",""))
+        /*lista.add(Servicios("1020346783", "HC-023","Jose Mendez", "Hab. 201","TAC 2","No"))
         binding.listaServicios.apply {
             layoutManager= LinearLayoutManager(activity)
             adapter=RecyclerServicio(lista)
-        }
-        //cargalista()
+        }*/
+        cargalista()
         fab=binding.agregar
         fab!!.setOnClickListener({
             startActivity(Intent(context,CreaServicio1::class.java))
         })
-
-
-
     }
 
     fun cargalista(){
-        lista.add(Servicios("1020346783", "HC-023","Jose Mendez", "Hab. 201","TAC 2","Si","No",""))
+        lista.add(Servicios("1020346783", "HC-023","Jose Mendez", "Hab. 201","TAC 2",R.drawable.ic_baseline_article_24.toString()))
         binding.listaServicios.apply {
             layoutManager= LinearLayoutManager(activity)
             adapter=RecyclerServicio(lista)
