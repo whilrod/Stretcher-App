@@ -56,6 +56,7 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
     }
 
     fun cargalista(){
+
         lista.add(Servicios("1020346783", "HC-023","Jose Mendez", "Hab. 201","TAC 2",R.drawable.ic_baseline_article_24.toString()))
         binding.listaServicios.apply {
             layoutManager= LinearLayoutManager(activity)
