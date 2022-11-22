@@ -4,21 +4,19 @@ package com.example.prueba1
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.example.prueba1.databinding.ActivityCreaServicio1Binding
+import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -31,7 +29,7 @@ class CreaServicio1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreaServicio1Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        //binding.btnGuardar.setOnClickListener { guardar() }
+        binding.btnGuardar.setOnClickListener { guardar() }
         binding.btnCamara.setOnClickListener { tomaFoto() }
         var documento :String = binding.servDocumento.text.toString()
         docu=documento
@@ -71,7 +69,7 @@ class CreaServicio1 : AppCompatActivity() {
         crearArchivo()
         val fotoUri=
                 FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID+".fileprovider",file)
-            it.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri)
+        it.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri)
         }
         abrirCamara.launch(intent)
     }
@@ -83,11 +81,31 @@ class CreaServicio1 : AppCompatActivity() {
         val origen :String = binding.servOrigin.text.toString()
         val destino :String = binding.servDestino.text.toString()
         val retorna:Int = binding.servRetorna.id
+        var vuelve: String=""
+        if(retorna==0){
+            vuelve="SI"
+
+        }else{
+            vuelve="NO"
+        }
         val recomendaciones :String = binding.servRecomendacion.text.toString()
         val fotoRuta:String= "$ruta/$file"
         //val foto :String = binding.servFoto.text.toString()
 
-        var pref=getSharedPreferences(docu, Context.MODE_PRIVATE)
+        var servicio= ServicioEntidad(docu,nombres,hClinica,origen,destino,vuelve,"SIN ASIGNAR","SIN ASIGNAR",
+            "CAMILLA","SIN ASIGNAR",fecha,hora,"SIN ASIGNAR")
+        val room= Room.databaseBuilder(this,bdServicios::class.java,"bdCamillerosServicios").build()
+
+        lifecycleScope.launch {
+            room.daoServicio().agregarServicio(servicio)
+            var lista= room.daoServicio().obtenerServicio()
+            for(srv in lista){
+                println("--->>>>${srv.document}")
+            }
+
+        }
+
+        /*var pref=getSharedPreferences(docu, Context.MODE_PRIVATE)
         var editar = pref.edit()
         editar.putString("documento",docu)
         editar.putString("hClinica",hClinica)
@@ -102,13 +120,15 @@ class CreaServicio1 : AppCompatActivity() {
             editar.putString("regresa","NO")
         }
         editar.putString("fotoRuta", fotoRuta)
-
+*/
         val bundle=Bundle()
         bundle.putString("documento",docu)
         ServiciosFragment().arguments=bundle
 
 
-        editar.commit()
+//        editar.commit()
+
+
         Toast.makeText(this,"Servicio Creado correctamente!",Toast.LENGTH_LONG).show()
         startActivity(Intent(this,JefeActivity::class.java))
 

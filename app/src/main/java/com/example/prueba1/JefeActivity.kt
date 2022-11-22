@@ -23,6 +23,8 @@ class JefeActivity : AppCompatActivity() {
         val historico=HistoricoJefeFragment()
         val perfil=PerfilFragment()
 
+        //envia datos a fragment//
+
         val bundle=Bundle()
         bundle.putString("correo",correo)
         perfil.arguments=bundle

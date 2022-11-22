@@ -8,7 +8,10 @@ import android.os.Bundle
 import android.renderscript.ScriptGroup.Binding
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.example.prueba1.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -17,9 +20,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.ingresar.setOnClickListener { validar() }
+
+        var correoDb: String= ""
+        var passDb: String= ""
+        val correo:String=binding.email.text.toString()
+        val room= Room.databaseBuilder(this,bdUsuarios::class.java,"bdCamillerosUsuarios").build()
+
+
+        binding.ingresar.setOnClickListener {
+            lifecycleScope.launch(){
+                var usuRes = room.daoUsuario().buscarUsuario(correo )
+                correoDb=usuRes.correo
+                passDb=usuRes.password
+                //println("___>>>>>>${usuRes.correo}--${usuRes.nombre}--${usuRes.password}--${usuRes.direccion}")
+                validaRoom2(correoDb!!,passDb!!)
+            }
+             }
         binding.email.setOnClickListener{limpia()}
-        binding.password.setOnClickListener { validar2() }
+        binding.password.setOnClickListener { lifecycleScope.launch(){
+            var usuRes = room.daoUsuario().buscarUsuario(correo )
+            correoDb=binding.email.text.toString()
+            passDb=binding.password.text.toString()
+            //println("___>>>>>>${usuRes.correo}--${usuRes.nombre}--${usuRes.password}--${usuRes.direccion}")
+            validar2(correoDb!!,passDb!!)
+            }
+        }
         binding.registrar.setOnClickListener { registra() }
         binding.recordar.setOnClickListener { recuperar() }
        // binding.registrar
@@ -39,8 +64,8 @@ class MainActivity : AppCompatActivity() {
             binding.password.requestFocus()
         }
     }
-    fun validar2(){
-        validar()
+    fun validar2(correoDb: String,passDb: String){
+        validaRoom2(binding.email.text.toString(),binding.password.text.toString())
         limpia2()
     }
 
@@ -55,6 +80,49 @@ class MainActivity : AppCompatActivity() {
             binding.email.requestFocus()
         }
     }
+
+
+    //var usuRes:String=""
+    fun validaRoom2(correoDb: String,passDb: String){
+        val correo:String=binding.email.text.toString()
+        val password:String=binding.password.text.toString()
+        //var correoDb: String= ""
+        //var passDb: String= ""
+        /*val room= Room.databaseBuilder(this,bdUsuarios::class.java,"bdCamillerosUsuarios").build()
+        lifecycleScope.launch(){
+            var usuRes = room.daoUsuario().buscarUsuario(correo )
+            correoDb=usuRes.correo
+            passDb=usuRes.password
+        }*/
+
+        if (correo.isEmpty()){
+            //binding.email.setTextColor(0x00F8EE7B)
+            binding.email.background=ResourcesCompat.getDrawable(resources,R.drawable.txt_danger,null)
+            binding.email.setHint("Ingrese su correo!!!")
+            //binding.password.setBackgroundColor(Color.RED)
+        } else if (password.isEmpty()) {
+            //binding.email.setTextColor(0x00F8EE7B)
+            binding.password.background =ResourcesCompat.getDrawable(resources, R.drawable.txt_danger, null)
+            binding.password.setHint("Ingrese su password!!!")
+            //binding.password.setBackgroundColor(Color.RED)
+        }else if(correo==correoDb){
+            if(password==passDb){
+                //Toast.makeText(this,"Bienvenido nuevamente!!!",Toast.LENGTH_LONG).show()
+                binding.email.setText("")
+                binding.password.setText("")
+
+                val intent1 = Intent(this,JefeActivity::class.java)
+                intent1.putExtra("correo",correo)
+                startActivity(intent1)
+                }else{
+                Toast.makeText(this,"Contraseña incorrecta",Toast.LENGTH_LONG).show()
+            }
+        }else{
+            Toast.makeText(this,"Usuario no Registrado!!",Toast.LENGTH_LONG).show()
+        }
+    }
+
+
 
     fun validar(){
         val correo:String=binding.email.text.toString()
