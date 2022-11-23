@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1026006598523",
+    "project_id": "camillerosapp",
+    "storage_bucket": "camillerosapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026006598523:android:2b7f38ed05687538d9b3de",
+        "android_client_info": {
+          "package_name": "com.example.prueba1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026006598523-mg2rksh57lvea601iaqqp8mfm3seo99n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prueba1",
+            "certificate_hash": "d0127c240ff28397f4d019eeb31dec3cf6436bc6"
+          }
+        },
+        {
+          "client_id": "1026006598523-jlvf26imkdj67otfe49e8299sek6ho0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcpLGuUGEauRLTmZ38jAI0jGxpybLft9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026006598523-jlvf26imkdj67otfe49e8299sek6ho0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
