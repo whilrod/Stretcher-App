@@ -11,10 +11,14 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.prueba1.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         var passDb: String= ""
         val correo:String=binding.email.text.toString()
         val room= Room.databaseBuilder(this,bdUsuarios::class.java,"bdCamillerosUsuarios").build()
+        firebaseAuth= Firebase.auth
 
-
-        binding.ingresar.setOnClickListener {
+/*        binding.ingresar.setOnClickListener {
             lifecycleScope.launch(){
                 var usuRes = room.daoUsuario().buscarUsuario(correo )
                 correoDb=usuRes.correo
@@ -35,22 +39,56 @@ class MainActivity : AppCompatActivity() {
                 //println("___>>>>>>${usuRes.correo}--${usuRes.nombre}--${usuRes.password}--${usuRes.direccion}")
                 validaRoom2(correoDb!!,passDb!!)
             }
-             }
+             }*/
         binding.email.setOnClickListener{limpia()}
-        binding.password.setOnClickListener { lifecycleScope.launch(){
+        /*binding.password.setOnClickListener { lifecycleScope.launch(){
             var usuRes = room.daoUsuario().buscarUsuario(correo )
             correoDb=binding.email.text.toString()
             passDb=binding.password.text.toString()
             //println("___>>>>>>${usuRes.correo}--${usuRes.nombre}--${usuRes.password}--${usuRes.direccion}")
             validar2(correoDb!!,passDb!!)
             }
-        }
+        }*/
+        binding.ingresar.setOnClickListener { validaFirebase() }
         binding.registrar.setOnClickListener { registra() }
         binding.recordar.setOnClickListener { recuperar() }
        // binding.registrar
     }
     fun registra(){
         startActivity(Intent(this,RegistroActivity::class.java))
+    }
+
+    fun validaFirebase(){
+        val correo:String=binding.email.text.toString()
+        val password:String=binding.password.text.toString()
+        if (correo.isEmpty()){
+            //binding.email.setTextColor(0x00F8EE7B)
+            binding.email.background=ResourcesCompat.getDrawable(resources,R.drawable.txt_danger,null)
+            binding.email.setHint("Ingrese su correo!!!")
+            //binding.password.setBackgroundColor(Color.RED)
+        } else if (password.isEmpty()) {
+            //binding.email.setTextColor(0x00F8EE7B)
+            binding.password.background =ResourcesCompat.getDrawable(resources, R.drawable.txt_danger, null)
+            binding.password.setHint("Ingrese su password!!!")
+            //binding.password.setBackgroundColor(Color.RED)
+        }else run {
+            firebaseAuth.signInWithEmailAndPassword(correo, password).addOnCompleteListener(this){
+                task ->
+                if(task.isSuccessful){
+                    val user = firebaseAuth.currentUser
+                    if (user != null) {
+                        //Toast.makeText(this,"Bienvenido nuevamente ${user.email}!!!",Toast.LENGTH_LONG).show()
+                        val intent1 = Intent(this,JefeActivity::class.java)
+                        intent1.putExtra("correo",correo)
+                        startActivity(intent1)
+                    }else{
+                        Toast.makeText(this,"Datos Incorrectos",Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Toast.makeText(this,"Datos Incorrectos",Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
     fun limpia() {
