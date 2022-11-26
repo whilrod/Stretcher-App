@@ -67,7 +67,7 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
         val formatter2= SimpleDateFormat("HH:mm:ss")
         val fecha = formatter.format(tiempo)
         var hora = formatter2.format(tiempo)
-        lista.add(Servicios("1020346783", "HC-023","Jose Mendez", "Hab. 201","TAC 2",R.drawable.ic_baseline_article_24.toString()))
+        lista.add(Servicios("1020346783", "HC-023","Jose Mendez", "Hab. 201","TAC 2",  R.drawable.ic_baseline_article_24.toString()))
         binding.listaServicios.apply {
             layoutManager= LinearLayoutManager(activity)
             adapter=RecyclerServicio(lista)

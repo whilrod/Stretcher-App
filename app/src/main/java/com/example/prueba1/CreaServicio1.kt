@@ -14,6 +14,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.prueba1.databinding.ActivityCreaServicio1Binding
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
@@ -22,6 +23,7 @@ import java.util.*
 
 class CreaServicio1 : AppCompatActivity() {
     lateinit var binding: ActivityCreaServicio1Binding
+    lateinit var firestoreDb: FirebaseFirestore
     var ruta =""
     var docu=""
     //@RequiresApi(Build.VERSION_CODES.O)
@@ -29,6 +31,8 @@ class CreaServicio1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreaServicio1Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        firestoreDb= FirebaseFirestore.getInstance()
         binding.btnGuardar.setOnClickListener { guardar() }
         binding.btnCamara.setOnClickListener { tomaFoto() }
         var documento :String = binding.servDocumento.text.toString()
@@ -74,7 +78,7 @@ class CreaServicio1 : AppCompatActivity() {
         abrirCamara.launch(intent)
     }
 
-    private fun guardar(){
+    fun guardar(){
         docu=binding.servDocumento.text.toString()
         val hClinica :String = binding.servHclinica.text.toString()
         val nombres :String = binding.servNombres.text.toString()
@@ -90,8 +94,38 @@ class CreaServicio1 : AppCompatActivity() {
         }
         val recomendaciones :String = binding.servRecomendacion.text.toString()
         val fotoRuta:String= "$ruta/$file"
+
+        val data= hashMapOf<String, String>(
+            "camillero" to "camillero",
+            destino to destino,
+            "documento" to docu,
+            "estado" to "estado",
+            fecha to fecha,
+            hora to hora,
+            "hclinica" to "hclinica",
+            "idtransporte" to "idtransporte",
+            "nombre" to nombres,
+            "origen" to origen,
+
+            "retorna" to vuelve,
+            "rutaimagen" to fotoRuta,
+            "tipotransporte" to "tipotransporte"
+        )
+
+        firestoreDb.collection("servicios").document(docu).set(data).addOnCompleteListener{
+            task->
+            val bundle=Bundle()
+            bundle.putString("documento",docu)
+            ServiciosFragment().arguments=bundle
+            Toast.makeText(this,"Servicio Creado correctamente!",Toast.LENGTH_LONG).show()
+            startActivity(Intent(this,JefeActivity::class.java))
+        }
+
+
+
         //val foto :String = binding.servFoto.text.toString()
 
+/*
         var servicio= ServicioEntidad(docu,nombres,hClinica,origen,destino,vuelve,"SIN ASIGNAR","SIN ASIGNAR",
             "CAMILLA","SIN ASIGNAR",fecha,hora,"SIN ASIGNAR")
         val room= Room.databaseBuilder(this,bdServicios::class.java,"bdCamillerosServicios").build()
@@ -103,8 +137,9 @@ class CreaServicio1 : AppCompatActivity() {
                 println("--->>>>${srv.document}")
             }
 
-        }
 
+        }
+*/
         /*var pref=getSharedPreferences(docu, Context.MODE_PRIVATE)
         var editar = pref.edit()
         editar.putString("documento",docu)
@@ -121,16 +156,14 @@ class CreaServicio1 : AppCompatActivity() {
         }
         editar.putString("fotoRuta", fotoRuta)
 */
-        val bundle=Bundle()
-        bundle.putString("documento",docu)
-        ServiciosFragment().arguments=bundle
+
 
 
 //        editar.commit()
 
 
-        Toast.makeText(this,"Servicio Creado correctamente!",Toast.LENGTH_LONG).show()
-        startActivity(Intent(this,JefeActivity::class.java))
+
+
 
     }
 }
