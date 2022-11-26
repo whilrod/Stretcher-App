@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalleServicioActivity">
+
+    <ImageView
+        android:id="@+id/imagenServicio"
+        android:layout_width="179dp"
+        android:layout_height="252dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/documentoServicio"
+        android:layout_width="149dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="12dp"
+        android:hint="# Servicio"
+        android:paddingLeft="3dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/rojocamillero"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenServicio" />
+
+    <TextView
+        android:id="@+id/hclinicaServicio"
+        android:layout_width="156dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:hint="historia_clinica"
+        android:paddingLeft="3dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/azul1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/documentoServicio" />
+
+    <TextView
+        android:id="@+id/nombresServicio"
+        android:layout_width="202dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="24dp"
+        android:hint="Paciente"
+        android:paddingLeft="3dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/azul2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hclinicaServicio" />
+</androidx.constraintlayout.widget.ConstraintLayout>

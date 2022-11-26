@@ -97,7 +97,7 @@ class CreaServicio1 : AppCompatActivity() {
 
         val data= hashMapOf<String, String>(
             "camillero" to "camillero",
-            destino to destino,
+            "destino" to destino,
             "documento" to docu,
             "estado" to "estado",
             fecha to fecha,
